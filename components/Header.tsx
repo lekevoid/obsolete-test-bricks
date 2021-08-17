@@ -34,11 +34,11 @@ export default function Header() {
 					</div>
 				</div>
 			</div>
-			{/* <style jsx>{`
+			<style jsx>{`
 				.Header {
 					background: red;
 				}
-			`}</style> */}
+			`}</style>
 		</header>
 	);
 }

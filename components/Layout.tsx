@@ -13,7 +13,7 @@ const Layout: React.FC = ({ children }) => {
 				<Footer />
 			</div>
 			<div className="bleed"></div>
-			{/* <style jsx>{`
+			<style jsx>{`
 				.grid {
 					grid-template-columns: 1fr 1600px 1fr;
 				}
@@ -31,7 +31,7 @@ const Layout: React.FC = ({ children }) => {
 						max-width: 80vw;
 					}
 				}
-			`}</style> */}
+			`}</style>
 		</div>
 	);
 };
