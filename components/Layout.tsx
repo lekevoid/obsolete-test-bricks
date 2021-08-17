@@ -13,6 +13,25 @@ const Layout: React.FC = ({ children }) => {
 				<Footer />
 			</div>
 			<div className="bleed"></div>
+			{/* <style jsx>{`
+				.grid {
+					grid-template-columns: 1fr 1600px 1fr;
+				}
+
+				.bleed {
+					background-color: #dfe3e8;
+				}
+
+				.global {
+					max-width: 100vw;
+				}
+
+				@media (max-width: 1200px) {
+					.global {
+						max-width: 80vw;
+					}
+				}
+			`}</style> */}
 		</div>
 	);
 };
