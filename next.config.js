@@ -6,7 +6,4 @@ module.exports = {
 		defaultLocale: "en",
 		localeDetection: false,
 	},
-	sassOptions: {
-		includePaths: [path.join(__dirname, "css")],
-	},
 };
