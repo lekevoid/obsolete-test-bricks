@@ -1,7 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
+import { useRouter } from "next/router";
+
 export default function Header() {
+	const routes = useRouter();
+	console.log(routes);
+
 	return (
 		<header className="Header bg-white sm:h-20 py-5 border-b sm:sticky top-0">
 			<div className="max-w-5xl mx-auto px-6">

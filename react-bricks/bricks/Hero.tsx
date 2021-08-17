@@ -4,7 +4,7 @@ import { types, Text, RichText } from "react-bricks";
 const Thumbnail: types.Brick = () => {
 	return (
 		<div className="p-6 text-center">
-			<Text propName="title" renderBlock={({ children }) => <h1 className="text-2xl font-bold">{children}</h1>} placeholder="Type a title please" />
+			<Text propName="title" renderBlock={({ children }) => <h1>{children}</h1>} placeholder="Light up the World" />
 			<RichText
 				propName="description"
 				renderBlock={({ children }) => <p className="text-lg text-gray-500">{children}</p>}
@@ -26,8 +26,8 @@ Thumbnail.schema = {
 	name: "thumbnail",
 	label: "Thumbnail",
 	getDefaultProps: () => ({
-		title: "Hello, world!",
-		description: "Lorem ipsum dolor sit amet.",
+		title: "Light up the World",
+		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie lacinia posuere.",
 	}),
 	sideEditProps: [],
 };
