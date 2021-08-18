@@ -2,7 +2,7 @@ import Link from "next/link";
 
 interface CTAProps {
 	color: string;
-	children: object;
+	children: Object;
 	className: string;
 	href: string;
 }
