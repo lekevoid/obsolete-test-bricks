@@ -3,7 +3,12 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout: React.FC = ({ children, translations = "" }) => {
+interface LayoutProps {
+	children: Object;
+	translations: Array<string>;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, translations }) => {
 	console.log(translations);
 
 	return (

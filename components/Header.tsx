@@ -1,13 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import { useContext } from "react";
-import { usePagePublic } from "react-bricks";
 
 import { useRouter } from "next/router";
 
-export default function Header({ translations }) {
+export default function Header({ translations = [] }) {
 	const routes = useRouter();
-	console.log(translations);
 
 	return (
 		<header className="Header bg-white sm:h-20 py-5 border-b sm:sticky top-0">
