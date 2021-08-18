@@ -3,12 +3,14 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC = ({ children, translations = "" }) => {
+	console.log(translations);
+
 	return (
 		<div className="grid grid-cols-3 h-screen justify-between font-content antialiased">
 			<div className="bleed"></div>
 			<div className="global">
-				<Header />
+				<Header translations={translations} />
 				<main className="mb-auto">{children}</main>
 				<Footer />
 			</div>

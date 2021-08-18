@@ -1,0 +1,6 @@
+.Tank {
+	max-width: 1280px;
+	padding-left: min(4vw, 40px);
+	padding-right: min(4vw, 40px);
+	width: 100%;
+}

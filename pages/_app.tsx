@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import config from "../react-bricks/config";
 
 import "../css/style.css";
+import "../css/components/Tank.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	// Color Mode Management

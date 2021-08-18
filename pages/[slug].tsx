@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, createContext } from "react";
 import { ReactBricksContext, PageViewer, fetchPage, fetchPages, cleanPage, types } from "react-bricks";
 import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -15,9 +15,10 @@ const Page: React.FC<PageProps> = ({ page }) => {
 	// Removes unknown or not allowed bricks
 	const { pageTypes, bricks } = useContext(ReactBricksContext);
 	const pageOk = cleanPage(page, pageTypes, bricks);
+	const T = createContext(pageOk.translations);
 
 	return (
-		<Layout>
+		<Layout translations={pageOk.translations}>
 			<Head>
 				<title>{page.meta.title}</title>
 				<meta name="description" content={page.meta.description} />
@@ -41,15 +42,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		return { paths: [], fallback: false };
 	}
 
-	// const allPages = await fetchPages(config.apiKey);
-
 	const allPages = [...(await fetchPages(config.apiKey, { language: "fr" })), ...(await fetchPages(config.apiKey, { language: "en" }))];
 
 	const paths = allPages
-		.map((page) => ({
-			params: { slug: page.slug },
-			locale: page.language,
-		}))
+		.map((page) => {
+			return {
+				params: { slug: page.slug },
+				locale: page.language,
+			};
+		})
 		.flat();
 
 	return { paths, fallback: false };

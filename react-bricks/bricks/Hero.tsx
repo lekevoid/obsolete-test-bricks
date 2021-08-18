@@ -1,23 +1,63 @@
 import React from "react";
-import { types, Text, RichText } from "react-bricks";
+import { types, Image, Text, RichText } from "react-bricks";
+import Tank from "/components/Tank";
 
-const Hero: types.Brick = () => {
+type TextColors = "blue" | "white";
+type ImagePlacement = "left" | "right";
+type ImageAlignment = "top" | "middle" | "bottom";
+
+interface HeroProps {
+	cta: string;
+	imageAlignment: ImageAlignment;
+	imagePlacement: ImagePlacement;
+	tagline: string;
+	title: string;
+	titleColor: TextColors;
+	taglineColor: TextColors;
+}
+
+const Hero: types.Brick<HeroProps> = ({ titleColor, taglineColor, imageAlignment, imagePlacement }) => {
+	let tankPaddingY = "py-36";
+	let txtPadding = "py-0";
+
+	switch (imageAlignment) {
+		case "top":
+			tankPaddingY = "pb-36";
+			txtPadding = "pt-36";
+			break;
+		case "bottom":
+			tankPaddingY = "pt-36";
+			txtPadding = "pb-36";
+			break;
+	}
+
 	return (
-		<div className="p-6 text-center">
-			<Text propName="title" renderBlock={({ children }) => <h1>{children}</h1>} placeholder="Light up the World" />
-			<RichText
-				propName="description"
-				renderBlock={({ children }) => <p>{children}</p>}
-				placeholder="Type a description"
-				allowedFeatures={[
-					types.RichTextFeatures.Bold,
-					types.RichTextFeatures.Highlight,
-					types.RichTextFeatures.Code,
-					types.RichTextFeatures.Link,
-					types.RichTextFeatures.UnorderedList,
-				]}
-				renderHighlight={({ children }) => <span className="px-1 rounded bg-blue-200 text-blue-900">{children}</span>}
-			/>
+		<div className="flex items-center justify-start">
+			<Tank className={`flex ${imagePlacement === "left" ? "flex-row" : "flex-row-reverse"} ${tankPaddingY}`}>
+				<div className="hero_img flex w-6/12">
+					<Image propName="hero_feature" alt="Feature" imageClassName="w-full" />
+				</div>
+				<div className={`hero_txt flex flex-wrap align-center content-center w-6/12 ${txtPadding}`}>
+					<div className={`w-full flex-full text-${titleColor}`}>
+						<Text propName="title" renderBlock={({ children }) => <h1>{children}</h1>} placeholder="Light up the World" />
+					</div>
+					<div className={`w-full flex-full text-${taglineColor}`}>
+						<RichText
+							propName="description"
+							renderBlock={({ children }) => <p>{children}</p>}
+							placeholder="Type a description"
+							allowedFeatures={[
+								types.RichTextFeatures.Bold,
+								types.RichTextFeatures.Highlight,
+								types.RichTextFeatures.Code,
+								types.RichTextFeatures.Link,
+								types.RichTextFeatures.UnorderedList,
+							]}
+							renderHighlight={({ children }) => <span className="px-1 rounded bg-blue-200 text-blue-900">{children}</span>}
+						/>
+					</div>
+				</div>
+			</Tank>
 		</div>
 	);
 };
@@ -27,10 +67,60 @@ Hero.schema = {
 	label: "Hero",
 	getDefaultProps: () => ({
 		title: "Light up the World",
-		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie lacinia posuere.",
+		tagline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie lacinia posuere.",
 		cta: "Click here",
 	}),
-	sideEditProps: [],
+	sideEditProps: [
+		{
+			name: "imagePlacement",
+			label: "Image Placement",
+			type: types.SideEditPropType.Select,
+			selectOptions: {
+				display: types.OptionsDisplay.Select,
+				options: [
+					{ value: "left", label: "Left" },
+					{ value: "right", label: "Right" },
+				],
+			},
+		},
+		{
+			name: "imageAlignment",
+			label: "Image Alignment",
+			type: types.SideEditPropType.Select,
+			selectOptions: {
+				display: types.OptionsDisplay.Select,
+				options: [
+					{ value: "top", label: "Top" },
+					{ value: "middle", label: "Middle" },
+					{ value: "bottom", label: "Bottom" },
+				],
+			},
+		},
+		{
+			name: "titleColor",
+			label: "Title Color",
+			type: types.SideEditPropType.Select,
+			selectOptions: {
+				display: types.OptionsDisplay.Select,
+				options: [
+					{ value: "blue", label: "Blue" },
+					{ value: "white", label: "White" },
+				],
+			},
+		},
+		{
+			name: "taglineColor",
+			label: "Tagline Color",
+			type: types.SideEditPropType.Select,
+			selectOptions: {
+				display: types.OptionsDisplay.Select,
+				options: [
+					{ value: "blue", label: "Blue" },
+					{ value: "white", label: "White" },
+				],
+			},
+		},
+	],
 };
 
 export default Hero;

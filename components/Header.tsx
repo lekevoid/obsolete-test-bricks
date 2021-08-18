@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import { useContext } from "react";
+import { usePagePublic } from "react-bricks";
 
 import { useRouter } from "next/router";
 
-export default function Header() {
+export default function Header({ translations }) {
 	const routes = useRouter();
-	// console.log(routes);
+	console.log(translations);
 
 	return (
 		<header className="Header bg-white sm:h-20 py-5 border-b sm:sticky top-0">
@@ -24,12 +26,14 @@ export default function Header() {
 					</div>
 					<div className="flex items-center space-x-6">
 						<div className="flex items-center space-x-2">
-							<Link href="/" locale="en">
-								<a className="text-gray-500 hover:text-pink-700">EN</a>
-							</Link>
-							<Link href="/" locale="fr">
-								<a className="text-gray-500 hover:text-pink-700">FR</a>
-							</Link>
+							{translations &&
+								translations.map((t) => {
+									return (
+										<Link href={routes.asPath} locale={t} key={t}>
+											<a className="lang text-gray-500 hover:text-pink-700">{t}</a>
+										</Link>
+									);
+								})}
 						</div>
 						<Link href="/admin">
 							<a className="py-2 px-5 rounded text-white font-medium bg-cyan-500 hover:bg-cyan-600 hover:shadow-lg transition duration-200">
@@ -42,6 +46,10 @@ export default function Header() {
 			<style jsx>{`
 				.Header {
 					background: red;
+				}
+
+				.lang {
+					text-transform: uppercase;
 				}
 			`}</style>
 		</header>
