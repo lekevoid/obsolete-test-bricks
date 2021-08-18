@@ -1,13 +1,16 @@
 import React from "react";
 import { types, Image, Text, RichText } from "react-bricks";
+import CTA from "components/CTA";
 import Tank from "components/Tank";
 
+type CTAColors = "blue" | "red" | "teal";
 type TextColors = "blue" | "white";
 type ImagePlacement = "left" | "right";
 type ImageAlignment = "top" | "middle" | "bottom";
 
 interface HeroProps {
 	cta: string;
+	ctaColor: CTAColors;
 	imageAlignment: ImageAlignment;
 	imagePlacement: ImagePlacement;
 	tagline: string;
@@ -16,7 +19,7 @@ interface HeroProps {
 	taglineColor: TextColors;
 }
 
-const Hero: types.Brick<HeroProps> = ({ titleColor, taglineColor, imageAlignment, imagePlacement }) => {
+const Hero: types.Brick<HeroProps> = ({ ctaColor = "red", ctaText, imageAlignment, imagePlacement, taglineColor, titleColor }) => {
 	let tankPaddingY = "py-36";
 	let txtPadding = "py-0";
 
@@ -56,6 +59,15 @@ const Hero: types.Brick<HeroProps> = ({ titleColor, taglineColor, imageAlignment
 							renderHighlight={({ children }) => <span className="px-1 rounded bg-blue-200 text-blue-900">{children}</span>}
 						/>
 					</div>
+					<Text
+						propName="cta"
+						renderBlock={({ children }) => (
+							<CTA className={`bg-${ctaColor}`} href="/">
+								{children}
+							</CTA>
+						)}
+						placeholder="Click here"
+					/>
 				</div>
 			</Tank>
 		</div>
@@ -117,6 +129,19 @@ Hero.schema = {
 				options: [
 					{ value: "blue", label: "Blue" },
 					{ value: "white", label: "White" },
+				],
+			},
+		},
+		{
+			name: "ctaColor",
+			label: "CTA Color",
+			type: types.SideEditPropType.Select,
+			selectOptions: {
+				display: types.OptionsDisplay.Select,
+				options: [
+					{ value: "blue", label: "Blue" },
+					{ value: "red", label: "Red" },
+					{ value: "teal", label: "Teal" },
 				],
 			},
 		},

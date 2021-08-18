@@ -9,7 +9,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, translations }) => {
-	console.log(translations);
+	// console.log(translations);
 
 	return (
 		<div className="grid grid-cols-3 h-screen justify-between font-content antialiased">
