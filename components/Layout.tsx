@@ -8,7 +8,7 @@ interface LayoutProps {
 	translations?: Array<string>;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, translations = [] }) => {
+const Layout: React.FC<LayoutProps> = ({ children, translations }) => {
 	console.log(translations);
 
 	return (

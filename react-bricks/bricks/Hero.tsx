@@ -1,6 +1,6 @@
 import React from "react";
 import { types, Image, Text, RichText } from "react-bricks";
-import Tank from "/components/Tank";
+import Tank from "components/Tank";
 
 type TextColors = "blue" | "white";
 type ImagePlacement = "left" | "right";
