@@ -41,15 +41,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		return { paths: [], fallback: false };
 	}
 
-	const allPages = await fetchPages(config.apiKey);
+	// const allPages = await fetchPages(config.apiKey);
+
+	const allPages = [...(await fetchPages(config.apiKey, { language: "fr" })), ...(await fetchPages(config.apiKey, { language: "en" }))];
 
 	const paths = allPages
-		.map((page) =>
-			page.translations.map((translation) => ({
-				params: { slug: page.slug },
-				locale: translation,
-			}))
-		)
+		.map((page) => ({
+			params: { slug: page.slug },
+			locale: page.language,
+		}))
 		.flat();
 
 	return { paths, fallback: false };
