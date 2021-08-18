@@ -59,15 +59,9 @@ const Hero: types.Brick<HeroProps> = ({ ctaColor = "red", cta, imageAlignment, i
 							renderHighlight={({ children }) => <span className="px-1 rounded bg-blue-200 text-blue-900">{children}</span>}
 						/>
 					</div>
-					<Text
-						propName="cta"
-						renderBlock={({ children }) => (
-							<CTA className={`bg-${ctaColor}`} href="/">
-								{children}
-							</CTA>
-						)}
-						placeholder="Click here"
-					/>
+					<CTA className={`bg-${ctaColor}`} href="/">
+						<Text propName="cta" renderBlock={({ children }) => <>{children}</>} placeholder="Click here" />
+					</CTA>
 				</div>
 			</Tank>
 		</div>
