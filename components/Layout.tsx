@@ -4,8 +4,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 interface LayoutProps {
-	children: Object;
-	translations: Array<string>;
+	children?: Object;
+	translations?: Array<string>;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, translations = [] }) => {
