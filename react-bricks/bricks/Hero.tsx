@@ -19,7 +19,7 @@ interface HeroProps {
 	taglineColor: TextColors;
 }
 
-const Hero: types.Brick<HeroProps> = ({ ctaColor = "red", ctaText, imageAlignment, imagePlacement, taglineColor, titleColor }) => {
+const Hero: types.Brick<HeroProps> = ({ ctaColor = "red", cta, imageAlignment, imagePlacement, taglineColor, titleColor }) => {
 	let tankPaddingY = "py-36";
 	let txtPadding = "py-0";
 
