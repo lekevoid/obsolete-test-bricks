@@ -1,13 +1,13 @@
 import React from "react";
 import { types, Text, RichText } from "react-bricks";
 
-const Thumbnail: types.Brick = () => {
+const Hero: types.Brick = () => {
 	return (
 		<div className="p-6 text-center">
 			<Text propName="title" renderBlock={({ children }) => <h1>{children}</h1>} placeholder="Light up the World" />
 			<RichText
 				propName="description"
-				renderBlock={({ children }) => <p className="text-lg text-gray-500">{children}</p>}
+				renderBlock={({ children }) => children}
 				placeholder="Type a description"
 				allowedFeatures={[
 					types.RichTextFeatures.Bold,
@@ -22,14 +22,15 @@ const Thumbnail: types.Brick = () => {
 	);
 };
 
-Thumbnail.schema = {
-	name: "thumbnail",
-	label: "Thumbnail",
+Hero.schema = {
+	name: "hero",
+	label: "Hero",
 	getDefaultProps: () => ({
 		title: "Light up the World",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie lacinia posuere.",
+		cta: "Click here",
 	}),
 	sideEditProps: [],
 };
 
-export default Thumbnail;
+export default Hero;
