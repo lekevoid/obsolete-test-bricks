@@ -7,7 +7,7 @@ const Hero: types.Brick = () => {
 			<Text propName="title" renderBlock={({ children }) => <h1>{children}</h1>} placeholder="Light up the World" />
 			<RichText
 				propName="description"
-				renderBlock={({ children }) => children}
+				renderBlock={({ children }) => <p>{children}</p>}
 				placeholder="Type a description"
 				allowedFeatures={[
 					types.RichTextFeatures.Bold,
